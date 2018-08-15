@@ -1,0 +1,16 @@
+language: none
+
+sudo: required
+
+runtime:
+  nodePool: shippable_shared_aarch64
+  
+build:
+ ci:
+  - sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install build-essential g++ protobuf-compiler python libtool
+  - git clone http://anonscm.debian.org/gitweb/?p=collab-maint/protobuf.git
+  - cd protobuf
+  - git submodule update --init --recursive
+  - ./autogen.sh
+  - ./configure
+  - make && make check && sudo make install && sudo ldconfig # refresh shared library cache.
