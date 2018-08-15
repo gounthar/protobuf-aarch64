@@ -7,8 +7,12 @@ runtime:
   
 build:
  ci:
-  - sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install build-essential g++ protobuf-compiler python libtool
-  - git clone http://anonscm.debian.org/gitweb/?p=collab-maint/protobuf.git
+  - sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install build-essential g++ protobuf-compiler python libtool \
+                 fakeroot dpkg-dev
+  - wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/protobuf/2.6.1-1.3ubuntu1/protobuf_2.6.1.orig.tar.gz
+  - wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/protobuf/2.6.1-1.3ubuntu1/protobuf_2.6.1-1.3ubuntu1.debian.tar.xz
+  - wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/protobuf/2.6.1-1.3ubuntu1/protobuf_2.6.1-1.3ubuntu1.dsc
+  - tar -xvzf protobuf_2.6.1.orig.tar.gz
   - cd protobuf
   - git submodule update --init --recursive
   - ./autogen.sh
